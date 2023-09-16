@@ -2,16 +2,13 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>DnTGivAP</title>
+<title>mydic</title>
 <script>
-    edit_ver = "ver 2.2"; console.log(edit_ver)
+    edit_ver = "ver 2.3"; console.log(edit_ver)
 </script>
 </head>
 <body>
-Japan Time <font size="8"><span id="dsp01"></span></font><br>
-Philippines Time <font size="6"><span id="dsp02"></span></font><br>
-<a href="https://of.qqeng.com/" target=”_blank”>QQEnglish</a>
-
+音量注意：検索すると即時、単語が再生されます。
 <form name = "xf">
     <input type = "text" style="font-size: 30px;" name = "xt" size = 10 onkeypress="chkEnter(event.keyCode);"><br>   
     <input type = "button" value = "search" onClick = "xsearch()">
@@ -21,7 +18,7 @@ Philippines Time <font size="6"><span id="dsp02"></span></font><br>
 </form>
 
 <textarea id="swords_eria" rows=25 cols = 28 ></textarea>
-<script>document.write("<br>"+edit_ver+"<br>")</script>
+<script>document.write("<br>"+edit_ver+"<br>")</script> #
 
 <script>
 let swords = ""
@@ -46,29 +43,6 @@ function addSwords(x){
     document.getElementById('swords_eria').value = swords;
 }
 
-timer()
-
-function timer(){
-
-    ts = Date.now()
- 
-    sec = ~~(ts/(1000)) 
-    min = ~~(sec/60)
-    sec = sec % 60;   if(sec < 10) sec = "0" + sec;
-    hor = ~~(min/60)  
-    min = min % 60;   if(min < 10) min = "0" + min;
-
-    j_hor = (hor + 9) % 24;   if(j_hor < 10)j_hor = "0" + j_hor;
-    f_hor = (hor + 8) % 24;   if(f_hor < 10)f_hor = "0" + f_hor;
-
-    j_time = j_hor + ':' + min + ':' + sec
-    f_time = f_hor + ':' + min + ':' + sec
-    
-    document.getElementById("dsp01").innerHTML = j_time
-    document.getElementById("dsp02").innerHTML = f_time
-    setTimeout("timer()",200);
-}
-
 function chkEnter(code){
 	//エンターキー押下なら
 	if(code === 13){
@@ -84,7 +58,7 @@ function xsearch(){
     xw3 = window.open("http://www.oxfordlearnersdictionaries.com/definition/english/" + x, "xw3");
     xw4 = window.open("http://ejje.weblio.jp/content/" + x, "xw4");
     xw6 = window.open("http://hidic.u-aizu.ac.jp/result.php?tableName=tango&word=" + x, "xw6");
-    xw5 = window.open("https://dictionary.cambridge.org/dictionary/english-japanese/" + x, "xw5");
+    xw5 = window.open("https://youglish.com/pronounce/" + x +"/english", "xw5");
 }
 
 function xreset(){
