@@ -1,5 +1,5 @@
 self.addEventListener('message', function (e) {
-  console.log("process.js head")
+  console.log("process.js 1330")
 
   n = e.data.num
 
@@ -27,7 +27,7 @@ self.addEventListener('message', function (e) {
   //return Res; //素数を収納した配列を返す
  
   //num =  Res.length //素数の個数を返す
-  num = Res[Res.length-1] // 見つけた最後の素数を返す
+  num = Res[Res.length] // 見つけた最後の素数を返す
 
   postMessage(num);
 });
