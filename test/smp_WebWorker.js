@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   let result = document.getElementById('result');
-  let worker = new Worker('process.jp');
+  let worker = new Worker('process.js');
 
   document.getElementById('btn').addEventListener('click', function (e) {
     worker.postMessage({
