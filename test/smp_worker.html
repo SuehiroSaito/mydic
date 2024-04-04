@@ -2,22 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>01 WebWorker Sample </title>
+<title>0102 WebWorker Sample </title>
 </head>
 <body>
+
   <input id="xnum" type="text" size="10" />を越えない一番大きな素数は
   <span id="xres">－</span>です。
   <input id="xbtn" type="button" value="計算" />
 
 <script>
-
 document.addEventListener('DOMContentLoaded', function () {
   let xres = document.getElementById('xres');
   let xworker = new Worker('xprocess.js');
 
   document.getElementById('xbtn').addEventListener('click', function (e) {
     xworker.postMessage({
-      num: document.getElementById('xnum').value,
+      xnum: document.getElementById('xnum').value,
     });
     xres.textContent = '（計算中...）';
   });
@@ -33,6 +33,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // 『JavaScript逆引きレシペ』第２版 p.504 参考
 </script>
-
 </body>
 </html>
