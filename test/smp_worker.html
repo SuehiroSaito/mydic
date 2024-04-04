@@ -13,7 +13,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   let xres = document.getElementById('xres');
-  let xworker = new Worker('process.js');
+  let xworker = new Worker('xprocess.js');
 
   document.getElementById('xbtn').addEventListener('click', function (e) {
     xworker.postMessage({
