@@ -16,7 +16,9 @@ function xfetch(x){
         .then((str) => new DOMParser().parseFromString(str, 'application/xml'))
         .then((xml) => {
             console.log(xml);
-            console.log(xml.querySelector('orange').innerHTML);
+            console.log("apple: ", xml.querySelector('apple').innerHTML);
+            console.log("orage: ", xml.querySelector('orange').innerHTML);
+
         });
 };
 
