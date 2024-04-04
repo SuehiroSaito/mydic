@@ -1,6 +1,6 @@
 self.addEventListener('message', function (e) {
-  //console.log("xprocess.js 1337")
-  n = e.data.num
+  //console.log("xprocess.js 1338")
+  n = e.data.xnum //1338
 
   const PJudge = []; //素数かどうか判断結果を保持する配列
   for (let i = 0; i <= n; i++) {
