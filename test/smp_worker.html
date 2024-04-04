@@ -2,18 +2,17 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>smp 122 WebWorker</title>
+<title>smp 124 WebWorker</title>
 </head>
 <body>
   <input id="num" type="text" size="10" />を越えない一番大きな素数は
   <span id="result">－</span>です。
-  <input id="btn" type="button" value="起動" />
+  <input id="btn" type="button" value="計算" />
 <!--
 <script src="smp_worker.js"></script>
 -->
 <script>
 
-</script>
 document.addEventListener('DOMContentLoaded', function () {
   let result = document.getElementById('result');
   let worker = new Worker('process.js');
@@ -33,5 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     window.alert(e.message);
   }, false);
 }, false);
+
+</script>
+
 </body>
 </html>
