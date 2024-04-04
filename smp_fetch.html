@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<button onclick='xfetch("sample.xml")'>
+    fetch 起動
+</button>
+
+<script>
+
+function xfetch(x){
+    fetch(x)
+        .then((response) => response.text())
+        .then((str) => new DOMParser().parseFromString(str, 'application/application/xml'))
+        .then((xml) => {
+            console.log(xml);
+            console.log(xml.querySelector('orange').innerHTML);
+        });
+};
+
+</script>
+</body>
+</html>
