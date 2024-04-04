@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   let result = document.getElementById('result');
-  let worker = new Worker('WWPrimes.js');
+  let worker = new Worker('process.jp');
 
   document.getElementById('btn').addEventListener('click', function (e) {
     worker.postMessage({
