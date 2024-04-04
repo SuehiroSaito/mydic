@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('btn').addEventListener('click', function (e) {
     worker.postMessage({
-      target: document.getElementById('target').value,
       num: document.getElementById('num').value,
     });
     result.textContent = '（計算中...）';
