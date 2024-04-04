@@ -18,4 +18,3 @@ document.addEventListener('DOMContentLoaded', function () {
     window.alert(e.message);
   }, false);
 }, false);
-
