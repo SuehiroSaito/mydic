@@ -28,6 +28,6 @@ self.addEventListener('message', function (e) {
  
   //num =  Res.length //素数の個数を返す
   num = Res[Res.length-1] // 見つけた最後の素数を返す
-  console.log(num)
+  console.log(Res)
   postMessage(num);
 });
