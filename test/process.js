@@ -1,5 +1,4 @@
 self.addEventListener('message', function (e) {
-  self.addEventListener('message', function (e) {
   let count = 0;
   for (let i = 1; i < e.data.target; i++) {
     if (i % e.data.num === 0) { count++; }
