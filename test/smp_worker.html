@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>smp 121 WebWorker</title>
+<title>smp 122 WebWorker</title>
 </head>
 <body>
   <input id="num" type="text" size="10" />を越えない一番大きな素数は
@@ -11,5 +11,27 @@
 <!--
 <script src="smp_worker.js"></script>
 -->
+<script>
+
+</script>
+document.addEventListener('DOMContentLoaded', function () {
+  let result = document.getElementById('result');
+  let worker = new Worker('process.js');
+
+  document.getElementById('btn').addEventListener('click', function (e) {
+    worker.postMessage({
+      num: document.getElementById('num').value,
+    });
+    result.textContent = '（計算中...）';
+  });
+
+  worker.addEventListener('message', function (e) {
+    result.textContent = e.data;
+  }, false);
+
+  worker.addEventListener('error', function (e) {
+    window.alert(e.message);
+  }, false);
+}, false);
 </body>
 </html>
