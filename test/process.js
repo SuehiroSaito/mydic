@@ -26,8 +26,8 @@ self.addEventListener('message', function (e) {
 
   //return Res; //素数を収納した配列を返す
  
-  num =  Res.length //素数の個数を返す
-  
+  //num =  Res.length //素数の個数を返す
+  num = Pjudge[PJudge.length-1]
 
   postMessage(num);
 });
