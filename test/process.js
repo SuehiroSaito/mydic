@@ -1,6 +1,5 @@
 self.addEventListener('message', function (e) {
-  console.log("process.js 1330")
-
+  console.log("process.js 1337")
   n = e.data.num
 
   const PJudge = []; //素数かどうか判断結果を保持する配列
