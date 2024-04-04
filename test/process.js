@@ -27,7 +27,7 @@ self.addEventListener('message', function (e) {
   //return Res; //素数を収納した配列を返す
  
   //num =  Res.length //素数の個数を返す
-  num = Res[Res.length] // 見つけた最後の素数を返す
-
+  num = Res[Res.length-1] // 見つけた最後の素数を返す
+  console.log(num)
   postMessage(num);
 });
