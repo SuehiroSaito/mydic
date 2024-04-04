@@ -2,28 +2,28 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>smp 125 WebWorker</title>
+<title>smp 126 WebWorker</title>
 </head>
 <body>
-  <input id="num" type="text" size="10" />を越えない一番大きな素数は
-  <span id="result">－</span>です。
-  <input id="btn" type="button" value="計算" />
+  <input id="xnum" type="text" size="10" />を越えない一番大きな素数は
+  <span id="xres">－</span>です。
+  <input id="xbtn" type="button" value="計算" />
 
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
-  let result = document.getElementById('result');
+  let xres = document.getElementById('xres');
   let xworker = new Worker('process.js');
 
-  document.getElementById('btn').addEventListener('click', function (e) {
+  document.getElementById('xbtn').addEventListener('click', function (e) {
     xworker.postMessage({
-      num: document.getElementById('num').value,
+      num: document.getElementById('xnum').value,
     });
-    result.textContent = '（計算中...）';
+    xres.textContent = '（計算中...）';
   });
 
   xworker.addEventListener('message', function (e) {
-    result.textContent = e.data;
+    xres.textContent = e.data;
   }, false);
 
   xworker.addEventListener('error', function (e) {
