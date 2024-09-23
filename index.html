@@ -5,19 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>mydic</title>
 <script>
-    edit_ver = "ver 2.70"; console.log(edit_ver)
+    edit_ver = "ver 2.81"; console.log(edit_ver)
 </script>
+<script src="https://zeptojs.com/zepto.min.js">
+</script> 
 </head>
 <body>
 <h6>音量注意：検索すると即時、単語が再生されることがあります。</h6>
-<form name = "xf">
-    <input type = "text" style="font-size: 30px;" name = "xt" size = 10 onkeypress="chkEnter(event.keyCode);"><br>   
-    <input type = "button" value = "search" onClick = "xsearch()">
-    <input type = "button" value = "reset" onClick = "xreset()">
-     <!--  <input type = "button" value = "close" onClick = "xwclose()"> -->
-    <br><br>
-    <input type = "button" value = "Clear Search history" onClick = "cswords()"><br>   
-</form>
+
+<input type = "text" style="font-size: 30px;" id = "xt" size = 10 onkeypress="chkEnter(event.keyCode);"><br>   
+<input type = "button" value = "search" onClick = "xsearch()">
+<input type = "button" value = "reset" onClick = "xreset()">
+    <!--  <input type = "button" value = "close" onClick = "xwclose()"> -->
+<br><br>
+<input type = "button" value = "Clear Search history" onClick = "cSWords()"><br>   
 
 <textarea id="swords_eria" rows=25 cols = 28 ></textarea>
 <script>document.write("<br>"+edit_ver+"<br>")</script>
@@ -35,15 +36,26 @@ document.getElementById('swords_eria').value = swords //localStorage.getItem('sw
 
 function cswords(){ // clear seach history
     swords = ""
-    document.getElementById('swords_eria').value = swords;
+    $('#swords_eria').val(swords);
     localStorage.setItem('swords', swords);
 }
 
 function addSwords(x){
     swords = x + "\n" + swords
+    $('#swords_eria').val(swords);
     localStorage.setItem('swords', swords);
-    document.getElementById('swords_eria').value = swords;
 }
+
+// 選択したものを検索ワード欄に入れる
+$('body').on('mouseup', ()=>{
+  let slcWd;
+  if(window.getSelection){
+    slcWd = window.getSelection().toString();
+    if(slcWd !== '' && slcWd !== '\n'){
+      $('#xt').val(slcWd).focus();
+    }
+  }
+});
 
 function chkEnter(code){
 	//エンターキー押下なら
@@ -52,20 +64,20 @@ function chkEnter(code){
 	}
 }
 
-function xsearch(){
-    x = document.xf.xt.value;
+function xsearch(){    //x = document.xf.xt.value;
+    let x = $("#xt").val()
     addSwords(x)
-    xw2 = window.open("http://images.google.com/images?q="+ x, "xw2");
     xw1 = window.open("http://eow.alc.co.jp/" + x, "xw1");
     xw3 = window.open("http://www.oxfordlearnersdictionaries.com/definition/english/" + x, "xw3");
     xw4 = window.open("http://ejje.weblio.jp/content/" + x, "xw4");
     xw5 = window.open("https://youglish.com/pronounce/" + x +"/english", "xw5");
+    xw2 = window.open("http://images.google.com/images?q="+ x, "xw2");
     xw6 = window.open("https://www.google.com/search?q=" + x +" 語源", "xw6");
 }
 
 function xreset(){
-    document.xf.xt.value="";
-    document.xf.xt.focus();  // プログラムメモ：カーソルを位置付ける
+    x = $("#xt").val("");
+    $("#xt").focus();  // プログラムメモ：カーソルを位置付ける
 }
 
 function xwclose(){
@@ -85,22 +97,22 @@ document.bgColor="Khaki"; // 色を指定
 xreset();
 
 </script>
-<a href="https://rpx.a8.net/svt/ejp?a8mat=2Z8NZD+72TJOY+2HOM+699KH&rakuten=y&a8ejpredirect=http%3A%2F%2Fhb.afl.rakuten.co.jp%2Fhgc%2F0ea62065.34400275.0ea62066.204f04c0%2Fa18012316370_2Z8NZD_72TJOY_2HOM_699KH%3Fpc%3Dhttp%253A%252F%252Fwww.rakuten.co.jp%252F%26m%3Dhttp%253A%252F%252Fm.rakuten.co.jp%252F" rel="nofollow" target="_blank">
-    <img src="http://hbb.afl.rakuten.co.jp/hsb/0eb4bbc5.1222aa2a.0eb4bbaa.95151395/" border="0"></a>
-    <img border="0" width="1" height="1" src="https://www11.a8.net/0.gif?a8mat=2Z8NZD+72TJOY+2HOM+699KH" alt="">
 
 <h5>保守記録</h5>
 改良希望は、suehiro3721p@gmail.com まで
 <br>この mydic、また検索された窓をショートカット化すると次回から好みの窓で表示できる。
+<br>　Google画像検索、語源検索が毎回新窓となる問題は解決できず。
+<br>2024/09/22 ver 2.80
+<br>　広告カット
+<br>　プログラムの変数名等変更。検索履歴を選択で可能。jQuery 導入。
 <br>2023/09/19 ver 2.51
-<br>検索窓を閉じるロジックにバグがあっため、閉じるボタンは表示させないことする
+<br>　検索窓を閉じるロジックにバグがあっため、閉じるボタンは表示させないことする
 <br>2023/09/20 ver 2.52
-<br>add CM
+<br>　add CM
 <br>2024/02/13 Ver 2.60
-<br>語源サイトを検索一覧に変更、文字表示一部修正。
+<br>　語源サイトを検索一覧に変更、文字表示一部修正。
 <br>2024/03/10 Ver 2.70
-<br>スマフォ対応
-
+<br>　スマフォ対応
 
 </body>
 </html>
