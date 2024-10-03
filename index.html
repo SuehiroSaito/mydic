@@ -3,52 +3,66 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mydic</title>
-<script>
-    edit_ver = "ver 2.81"; console.log(edit_ver)
-</script>
-<script src="https://zeptojs.com/zepto.min.js">
-</script> 
+<title>myDic</title>
+  <script src="https://zeptojs.com/zepto.min.js">
+  </script>
 </head>
 <body>
-<h6>音量注意：検索すると即時、単語が再生されることがあります。</h6>
-
-<input type = "text" style="font-size: 30px;" id = "xt" size = 10 onkeypress="chkEnter(event.keyCode);"><br>   
+<br>
+<br>
+<input type="text" id="xt" 
+  style="font-size: 30px;" 
+  size = 17
+  value="" 
+  onkeypress="chkEnter(event)"
+>
+<br>
 <input type = "button" value = "search" onClick = "xsearch()">
 <input type = "button" value = "reset" onClick = "xreset()">
-    <!--  <input type = "button" value = "close" onClick = "xwclose()"> -->
-<br><br>
-<input type = "button" value = "Clear Search history" onClick = "cSWords()"><br>   
+<br>
+<textarea id="working_eria" rows=20 cols = 55 >
+(調べたい英単語を含むものをここに貼り付けて、その英単語をマウスで選択します。)
+</textarea>
 
+<br>
+<br>
 <textarea id="swords_eria" rows=25 cols = 28 ></textarea>
-<script>document.write("<br>"+edit_ver+"<br>")</script>
+<br>
+<input type = "button" value = "Clear Search History" onClick = "cSWords()"><br>
 
 <script>
-let swords = ""
-let xw1 = ""
-let xw2 = ""
-let xw3 = ""
-let xw4 = ""
-let xw5 = ""
+let w01=""
+let w02=""
+let swords = localStorage.getItem('swords');
 
-swords = localStorage.getItem('swords');
-document.getElementById('swords_eria').value = swords //localStorage.getItem('swords');
+$('#swords_eria').val(swords);
 
-function cswords(){ // clear seach history
+function cSWords(){ // clear seach history
     swords = ""
     $('#swords_eria').val(swords);
     localStorage.setItem('swords', swords);
 }
 
-function addSwords(x){
+function addSWords(x){
     swords = x + "\n" + swords
     $('#swords_eria').val(swords);
     localStorage.setItem('swords', swords);
 }
 
+function search(){
+  let x = $("#xt").val()
+  addSWords(x)
+  w01 = window.open("http://www.oxfordlearnersdictionaries.com/definition/english/" + x, "w01");
+  w02 = window.open("http://eow.alc.co.jp/" + x, "w02");
+  xw3 = window.open("http://ejje.weblio.jp/content/" + x, "xw3");
+  xw4 = window.open("https://youglish.com/pronounce/" + x +"/english", "xw4");
+  xw5 = window.open("http://images.google.com/images?q="+ x, "xw5");
+  xw6 = window.open("https://www.google.com/search?q=" + x +" 語源", "xw6");
+}
+
 // 選択したものを検索ワード欄に入れる
 $('body').on('mouseup', ()=>{
-  let slcWd;
+  var slcWd;
   if(window.getSelection){
     slcWd = window.getSelection().toString();
     if(slcWd !== '' && slcWd !== '\n'){
@@ -57,22 +71,11 @@ $('body').on('mouseup', ()=>{
   }
 });
 
-function chkEnter(code){
+function chkEnter(event){
 	//エンターキー押下なら
-	if(code === 13){
-		xsearch();
+	if(event.keyCode === 13){
+		search();
 	}
-}
-
-function xsearch(){    //x = document.xf.xt.value;
-    let x = $("#xt").val()
-    addSwords(x)
-    xw1 = window.open("http://eow.alc.co.jp/" + x, "xw1");
-    xw3 = window.open("http://www.oxfordlearnersdictionaries.com/definition/english/" + x, "xw3");
-    xw4 = window.open("http://ejje.weblio.jp/content/" + x, "xw4");
-    xw5 = window.open("https://youglish.com/pronounce/" + x +"/english", "xw5");
-    xw2 = window.open("http://images.google.com/images?q="+ x, "xw2");
-    xw6 = window.open("https://www.google.com/search?q=" + x +" 語源", "xw6");
 }
 
 function xreset(){
@@ -80,39 +83,11 @@ function xreset(){
     $("#xt").focus();  // プログラムメモ：カーソルを位置付ける
 }
 
-function xwclose(){
-    xw1.close();
-    xw2.close();
-    xw3.close();
-    xw4.close();
-    xw5.close();
-    xw6.close();
-    // window.close(); // not ust it
-}
-
-//window.resizeTo(200,100);
-//window.moveTo(0,0);
-
-document.bgColor="Khaki"; // 色を指定
+document.bgColor="ddff88"; // 色を指定
 xreset();
 
+// 当辞書プログラムは、著作権フリーです。
 </script>
-
-<h5>保守記録</h5>
 改良希望は、suehiro3721p@gmail.com まで
-<br>この mydic、また検索された窓をショートカット化すると次回から好みの窓で表示できる。
-<br>　Google画像検索、語源検索が毎回新窓となる問題は解決できず。
-<br>2024/09/22 ver 2.80
-<br>　広告カット
-<br>　プログラムの変数名等変更。検索履歴を選択で可能。jQuery 導入。
-<br>2023/09/19 ver 2.51
-<br>　検索窓を閉じるロジックにバグがあっため、閉じるボタンは表示させないことする
-<br>2023/09/20 ver 2.52
-<br>　add CM
-<br>2024/02/13 Ver 2.60
-<br>　語源サイトを検索一覧に変更、文字表示一部修正。
-<br>2024/03/10 Ver 2.70
-<br>　スマフォ対応
-
 </body>
-</html>
+</html
