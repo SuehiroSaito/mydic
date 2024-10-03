@@ -4,11 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myDic</title>
-  <script src="https://zeptojs.com/zepto.min.js">
-  </script>
+<script src="https://zeptojs.com/zepto.min.js">
+</script>
+<script>
+  edit_ver = "ver 3.01"; console.log(edit_ver)
+</script>
 </head>
 <body>
-<h4>英単語検索</h4>
+<h3>マイ辞書:英単語複数サイト検索</h3>
 <br>
 <input type="text" id="xt" 
   style="font-size: 30px;" 
@@ -17,7 +20,7 @@
   onkeypress="chkEnter(event)"
 >
 <br>
-<input type = "button" value = "search" onClick = "xsearch()">
+<input type = "button" value = "search" onClick = "search()">
 <input type = "button" value = "reset" onClick = "xreset()">
 <br>
 <textarea id="working_eria" rows=20 cols = 55 >
@@ -87,8 +90,44 @@ function xreset(){
 document.bgColor="ddff88"; // 色を指定
 xreset();
 
+// 窓閉じは動作せず
+function xwclose(){
+    xw1.close();
+    xw2.close();
+    xw3.close();
+    xw4.close();
+    xw5.close();
+    xw6.close();
+    // window.close(); // not ust it
+}
+
+//window.resizeTo(200,100);
+//window.moveTo(0,0);
+
 // 当辞書プログラムは、著作権フリーです。
 </script>
 改良希望は、suehiro3721p@gmail.com まで
+<script>
+/*
+<h5>保守記録</h5>
+-Ver 3.01
+　かじるシリーズのソース反映
+<br>この mydic、また検索された窓をショートカット化すると次回から好みの窓で表示できる。
+<br>　Google画像検索、語源検索が毎回新窓となる問題は解決できず。
+<br>2024/09/22 ver 2.80
+<br>　広告カット
+<br>　プログラムの変数名等変更。検索履歴を選択で可能。jQuery 導入。
+<br>2023/09/19 ver 2.51
+<br>　検索窓を閉じるロジックにバグがあっため、閉じるボタンは表示させないことする
+<br>2023/09/20 ver 2.52
+<br>　add CM
+<br>2024/02/13 Ver 2.60
+<br>　語源サイトを検索一覧に変更、文字表示一部修正。
+<br>2024/03/10 Ver 2.70
+<br>　スマフォ対応
+　最低限の対応のみ
+　複数窓が開くためか、スマフォでは、実用性なし。
+*/
+</script>
 </body>
-</html
+</html>
