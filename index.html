@@ -7,7 +7,7 @@
 <script src="https://zeptojs.com/zepto.min.js">
 </script>
 <script>
-  edit_ver = "ver 3.01"; console.log(edit_ver)
+  edit_ver = "ver 3.10"; console.log(edit_ver)
 </script>
 </head>
 <body>
@@ -56,8 +56,12 @@ function addSWords(x){
 function search(){
   let x = $("#xt").val()
   addSWords(x)
+  const words = x.split(' ');
+  console.log(words[3]);
+  x0 = words[0]
+  x1 = words[1]
   w01 = window.open("http://www.oxfordlearnersdictionaries.com/definition/english/" + x, "w01");
-  w02 = window.open("http://eow.alc.co.jp/" + x, "w02");
+  w02 = window.open("http://eow.alc.co.jp/" + x0 + "+" + x1, "w02");
   xw3 = window.open("http://ejje.weblio.jp/content/" + x, "xw3");
   xw4 = window.open("https://youglish.com/pronounce/" + x +"/english", "xw4");
   xw5 = window.open("http://images.google.com/images?q="+ x, "xw5");
@@ -109,8 +113,10 @@ function xwclose(){
 改良希望は、suehiro3721p@gmail.com まで
 <script>
 /*
-<h5>保守記録</h5>
--Ver 3.01
+保守記録
+- Ver 3.10
+　熟語対応、２語熟語のみ
+- Ver 3.01
 　かじるシリーズのソース反映
 <br>この mydic、また検索された窓をショートカット化すると次回から好みの窓で表示できる。
 <br>　Google画像検索、語源検索が毎回新窓となる問題は解決できず。
