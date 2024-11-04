@@ -7,7 +7,7 @@
 <script src="https://zeptojs.com/zepto.min.js">
 </script>
 <script>
-  edit_ver = "ver 3.10"; console.log(edit_ver)
+  edit_ver = "ver 3.14"; console.log(edit_ver)
 </script>
 </head>
 <body>
@@ -35,8 +35,6 @@
 <input type = "button" value = "Clear Search History" onClick = "cSWords()"><br>
 
 <script>
-let w01=""
-let w02=""
 let swords = localStorage.getItem('swords');
 
 $('#swords_eria').val(swords);
@@ -55,13 +53,20 @@ function addSWords(x){
 
 function search(){
   let x = $("#xt").val()
+  x = x.trim()
   addSWords(x)
-  const words = x.split(' ');
-  console.log(words[3]);
-  x0 = words[0]
-  x1 = words[1]
+  let xp = x
+  if (x.indexOf(" ") > 0) {
+    let x0=""
+    let x1=""
+    const words = x.split(' ');
+    x0 = words[0]
+    x1 = words[1]
+    xp = x0 + "+" + x1
+    console.log(x,x0,x1,xp);
+  }
   w01 = window.open("http://www.oxfordlearnersdictionaries.com/definition/english/" + x, "w01");
-  w02 = window.open("http://eow.alc.co.jp/" + x0 + "+" + x1, "w02");
+  w02 = window.open("http://eow.alc.co.jp/" + xp, "w02");
   xw3 = window.open("http://ejje.weblio.jp/content/" + x, "xw3");
   xw4 = window.open("https://youglish.com/pronounce/" + x +"/english", "xw4");
   xw5 = window.open("http://images.google.com/images?q="+ x, "xw5");
@@ -114,6 +119,7 @@ function xwclose(){
 <script>
 /*
 保守記録
+- Ver 3.14バグ修正、検索ワードトリミング
 - Ver 3.10
 　熟語対応、２語熟語のみ
 - Ver 3.01
